@@ -1,4 +1,5 @@
 /* Navbar.css */
+/* Navbar.css */
 :root {
   --neon-green: #39ff14;
   --black: #0a0a0a;
@@ -27,24 +28,27 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 1rem clamp(0.5rem, 5vw, 2rem); /* Shrinks on smaller screens */
+  padding: 1rem clamp(1rem, 5vw, 2rem);
   height: 5rem;
   position: relative;
 }
 
 .logo-container {
   position: relative;
+  flex-shrink: 0;
 }
 
 .logo-link {
   text-decoration: none;
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .logo {
-  font-size: 1.8rem;
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
   font-weight: bold;
   color: var(--white);
   margin: 0;
@@ -52,6 +56,7 @@
   z-index: 1;
   text-transform: uppercase;
   letter-spacing: 1px;
+  white-space: nowrap;
 }
 
 .logo-highlight {
@@ -79,11 +84,14 @@
   display: flex;
   align-items: center;
   gap: 2rem;
+  flex-grow: 1;
+  justify-content: space-between;
+  margin-left: 20vw;
 }
 
 .nav-list {
   display: flex;
-  gap: 4rem;
+  gap: clamp(1.5rem, 3vw, 4rem);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -95,12 +103,13 @@
 
 .nav-link {
   color: var(--white);
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 1.1vw, 1.1rem);
   font-weight: 500;
   text-decoration: none;
   transition: color 0.3s ease;
   position: relative;
   padding: 0.5rem 0;
+  white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -125,19 +134,21 @@
 .auth-buttons {
   display: flex;
   gap: 1rem;
+  margin-left: auto;
 }
 
 .auth-btn {
   position: relative;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem clamp(1rem, 1.5vw, 1.5rem);
   border-radius: 4px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 0.9vw, 0.9rem);
   overflow: hidden;
   border: none;
   z-index: 1;
+  white-space: nowrap;
 }
 
 .auth-btn span {
@@ -185,14 +196,14 @@
 
 .user-avatar {
   cursor: pointer;
-  width: 40px;
-  height: 40px;
+  width: clamp(36px, 2.5vw, 40px);
+  height: clamp(36px, 2.5vw, 40px);
   border-radius: 50%;
   overflow: hidden;
   position: relative;
   border: 1px solid var(--border-color);
   transition: all 0.3s ease;
-  
+  flex-shrink: 0;
 }
 
 .user-avatar:hover {
@@ -310,6 +321,7 @@
   color: var(--white);
   cursor: pointer;
   z-index: 1001;
+  padding: 0.5rem;
 }
 
 .navbar-shadow {
@@ -322,13 +334,10 @@
   pointer-events: none;
 }
 
-@media (max-width: 1100px) {
+/* Mobile menu styles */
+@media (max-width: 1024px) {
   .mobile-menu-button {
     display: block;
-  }
-
-  .navbar-container{
-   padding: 0 5rem !important;
   }
 
   .nav-links {
@@ -346,6 +355,8 @@
     gap: 2rem;
     transition: right 0.3s ease;
     border-left: 1px solid var(--border-color);
+    justify-content: flex-start;
+    margin-left: 0;
   }
 
   .nav-links.open {
@@ -355,117 +366,57 @@
   .nav-list {
     flex-direction: column;
     gap: 1.5rem;
+    width: 100%;
   }
 
   .auth-buttons {
     flex-direction: column;
     width: 100%;
+    gap: 1rem;
+    margin-left: 0;
   }
 
   .auth-btn {
     width: 100%;
     text-align: center;
-  }
-}
-
-/* Updated Navbar.css */
-.navbar-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem 0rem;
-  height: 5rem;
-  position: relative;
-  gap: 15rem; /* Added gap between sections */
-}
-
-/* Updated navigation links positioning */
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 12rem;
-  margin-left: auto;
-  flex-grow: 1; /* Allow this to grow and push auth buttons to right */
-  justify-content: center; /* Center the nav items */
-}
-
-/* Updated nav items */
-.nav-link {
-  color: var(--white);
-  font-size: 1.1rem; /* Increased from 1rem */
-  font-weight: 500;
-  text-decoration: none;
-  transition: color 0.3s ease;
-  position: relative;
-  padding: 0.5rem 0;
-}
-
-/* Updated auth buttons positioning */
-.auth-buttons {
-  display: flex;
-  gap: 1rem;
-  margin-left: auto; /* Push to far right */
-  padding-right: 1rem; /* Add some right spacing */
-}
-
-/* Mobile menu adjustments */
-@media (max-width: 1024px) {
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 80%;
-    max-width: 300px;
-    height: 100vh;
-    background-color: var(--translucent-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    flex-direction: column;
-    padding: 5rem 2rem 2rem;
-    gap: 2rem;
-    transition: right 0.3s ease;
-    border-left: 1px solid var(--border-color);
-    justify-content: flex-start; /* Reset for mobile */
-  }
-
-  .auth-buttons {
-    margin-left: 0; /* Reset for mobile */
-    padding-right: 0; /* Reset for mobile */
-    width: 100%;
+    padding: 0.75rem 1rem;
   }
 
   .nav-link {
-    font-size: 1.2rem; /* Slightly larger for mobile */
+    font-size: 1.1rem;
+    padding: 0.5rem 0;
+    display: block;
+    width: 100%;
   }
 }
 
-@media (max-width: 550px) {
-  .navbar-container {
-    padding: 0 0rem;
-    gap: 1rem; /* Remove extra space */
+/* Small screen adjustments */
+@media (max-width: 480px) {
+  .navbar-container1 {
+    padding: 1rem;
   }
 
-   .logo {
-    font-size: 1.4rem;
-    
+  .logo {
+    font-size: 1.3rem;
   }
-
 
   .nav-links {
-    width: 100%;
-    max-width: none;
-   
+    width: 85%;
+    padding: 4.5rem 1.5rem 1.5rem;
   }
 
-  .nav-link {
-    font-size: 1rem;
-  }
-
-  .auth-buttons {
-    gap: 0.75rem;
+  .auth-btn {
+    font-size: 0.9rem;
   }
 }
 
+@media (max-width: 360px) {
+  .logo {
+    font-size: 1.2rem;
+  }
 
+  .nav-links {
+    width: 90%;
+    padding: 4rem 1rem 1rem;
+  }
+}
